@@ -3,17 +3,14 @@ package com.example.dex.popularmovies.ui.adapter;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.example.dex.popularmovies.R;
 import com.example.dex.popularmovies.api.MovieDBServiceAPI;
 import com.example.dex.popularmovies.model.Movie;
-import com.example.dex.popularmovies.utils.Utils;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -41,29 +38,22 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
         int layoutForMovieItem = R.layout.activity_movie_list;
         LayoutInflater inflater = LayoutInflater.from(mContext);
         View view = inflater.inflate(layoutForMovieItem, parent, false);
-        MovieViewHolder viewHolder = new MovieViewHolder(view);
 
-        return viewHolder;
+        return new MovieViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MovieViewHolder holder, int position) {
 
-        String rating;
-
         Movie mMovie = moviesList.get(position);
 
-        rating = mMovie.getRating();
-
-        Log.d(Utils.TAG, "poster =  " + mMovie.getPoster());
+//        Log.d(Utils.TAG, "poster =  " + mMovie.getPoster());
         Picasso.with(mContext)
                 .load(MovieDBServiceAPI.API_POSTER_HEADER_LARGE + mMovie.getPoster())
                 .placeholder(R.drawable.poster_placeholder)
                 .error(R.drawable.poster_error)
                 .into(holder.ivPoser);
-        holder.tvTitle.setText(mMovie.getTitle());
         holder.itemView.setTag(mMovie);
-        holder.tvRatingMovieItem.setText(rating);
     }
 
     @Override
@@ -82,12 +72,8 @@ public class MovieListAdapter extends RecyclerView.Adapter<MovieListAdapter.Movi
 
         @BindView(R.id.iv_poster)
         ImageView ivPoser;
-        @BindView(R.id.tv_title)
-        TextView tvTitle;
-        @BindView(R.id.tv_rating_movie_item)
-        TextView tvRatingMovieItem;
 
-        public MovieViewHolder(View itemView) {
+        MovieViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
             itemView.setOnClickListener(this);

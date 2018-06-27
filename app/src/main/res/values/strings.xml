@@ -9,4 +9,16 @@
     <string name="dialog_error_network_message">Please check your network connectivity</string>
     <string name="popular_filter">Popular</string>
     <string name="top_rated_filter">Top Rated</string>
+
+    <string name="movie_rating">Movie Rating</string>
+    <string name="rating_out_of_10">/10</string>
+    <string name="rating_text">-</string>
+    <string name="movie_synopsis">Synopsis</string>
+    <string name="backdrop_image">Backdrop Image</string>
+    <string name="movie_runtime_year">-</string>
+    <string name="movie_poster">Movie Poster</string>
+    <string name="movie_title">- -</string>
+    <string name="trailer_player">Trailer Player</string>
+    <string name="movie_list_poster">Movie List Poster</string>
+    <string name="network_error">Error loading from Network</string>
 </resources>

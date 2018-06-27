@@ -15,24 +15,22 @@ public class MovieDBServiceAPI {
 
     public static final String API_BASE_URL = "http://api.themoviedb.org/3/";
     public static final String API_POSTER_HEADER_LARGE = "http://image.tmdb.org/t/p/w185";
-    public static final String API_POSTER_HEADER_SMALL = "http://image.tmdb.org/t/p/w92";
+    //    public static final String API_POSTER_HEADER_SMALL = "http://image.tmdb.org/t/p/w92";
     public static final String API_BACKDROP_HEADER = "http://image.tmdb.org/t/p/w780";
 
     public static final String SORT_BY_TOP_RATED = "top_rated";
-    public static final String SORT_BY_POPOLARITY = "popular";
-    public static final String SORT_BY_DEFAULT = SORT_BY_POPOLARITY;
+    public static final String SORT_BY_POPULARITY = "popular";
+    public static final String SORT_BY_DEFAULT = SORT_BY_POPULARITY;
 
-    public static final String API_KEY = "9279b8f849671149d4620a59f10d1be7";
-
+    // TODO: Enter your API key here
+    public static final String API_KEY = "";
 
     private static OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
     private static Retrofit retrofit;
 
-
     public static <S> S createService(Class<S> serviceClass) {
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY);
         httpClient.addInterceptor(logging).addInterceptor(new AuthInterceptor());
-
 
         // Creation of retrofit object
         retrofit = new Retrofit.Builder()
@@ -41,13 +39,11 @@ public class MovieDBServiceAPI {
                 .client(httpClient.build())
                 .build();
 
-
         return retrofit.create(serviceClass);
     }
 
     //To add "api_key" parameter at the end of each request
     private static class AuthInterceptor implements Interceptor {
-
         @Override
         public Response intercept(Chain chain) throws IOException {
             HttpUrl url = chain.request().url()

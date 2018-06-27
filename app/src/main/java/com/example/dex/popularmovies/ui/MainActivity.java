@@ -9,10 +9,12 @@ import com.example.dex.popularmovies.R;
 import com.example.dex.popularmovies.api.MovieDBRestAPI;
 import com.example.dex.popularmovies.api.MovieDBServiceAPI;
 
+import java.util.Objects;
+
 public class MainActivity extends AppCompatActivity {
 
-    protected Context mContext;
-    protected MovieDBRestAPI mdbAPI;
+    Context mContext;
+    MovieDBRestAPI mdbAPI;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,22 +56,23 @@ public class MainActivity extends AppCompatActivity {
                 // If we got here, the user's action was not recognized.
                 // Invoke the superclass to handle it.
                 return super.onOptionsItemSelected(item);
-
         }
 
     }
 
 
-    // Toolbar with title and home button
+    //Toolbar with title and home button
     protected void setToolBar(String title, boolean homeUp, boolean showHomeUp) {
-        getSupportActionBar().setTitle(title);
+
+        Objects.requireNonNull(getSupportActionBar()).setTitle(title);
         getSupportActionBar().setDisplayHomeAsUpEnabled(homeUp);
         getSupportActionBar().setDisplayShowHomeEnabled(showHomeUp);
+
     }
 
     // Toolbar without home button
     protected void setToolBar(String title) {
-        getSupportActionBar().setTitle(title);
+        Objects.requireNonNull(getSupportActionBar()).setTitle(title);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         getSupportActionBar().setDisplayShowHomeEnabled(false);
     }

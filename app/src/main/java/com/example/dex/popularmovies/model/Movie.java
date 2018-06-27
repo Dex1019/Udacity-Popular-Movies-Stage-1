@@ -22,9 +22,6 @@ public class Movie {
     @SerializedName("runtime")
     private String runtime;
 
-    @SerializedName("genres")
-
-
     public long getId() {
         return id;
     }

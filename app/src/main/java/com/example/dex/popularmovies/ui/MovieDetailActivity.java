@@ -12,6 +12,8 @@ import com.example.dex.popularmovies.model.Movie;
 import com.example.dex.popularmovies.utils.Utils;
 import com.squareup.picasso.Picasso;
 
+import java.util.Objects;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import retrofit2.Call;
@@ -34,7 +36,6 @@ public class MovieDetailActivity extends MainActivity {
     TextView tvRuntime;
 
     private Movie mMovie;
-    private String mMovieTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,10 +43,9 @@ public class MovieDetailActivity extends MainActivity {
         setContentView(R.layout.activity_movie_detail);
         ButterKnife.bind(this);
 
-        long movieId = getIntent().getExtras().getLong(MovieListActivity.EXTRA_MOVIE_ID);
-        mMovieTitle = getIntent().getExtras().getString(MovieListActivity.EXTRA_MOVIE_TITLE);
+        long movieId = Objects.requireNonNull(getIntent().getExtras()).getLong(MovieListActivity.EXTRA_MOVIE_ID);
+        String mMovieTitle = getIntent().getExtras().getString(MovieListActivity.EXTRA_MOVIE_TITLE);
         httpGetMovieDetails(movieId);
-
         setToolBar(mMovieTitle, true, true);
 
     }
@@ -89,7 +89,6 @@ public class MovieDetailActivity extends MainActivity {
                         .error(R.drawable.poster_error)
                         .into(ivBackdrop);
 
-
             }
 
             @Override
@@ -103,6 +102,4 @@ public class MovieDetailActivity extends MainActivity {
     public void onClickButtonBackdrop(View view) {
         Utils.showShortToastMessage(mContext, "Soon...");
     }
-
-
 }
